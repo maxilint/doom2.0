@@ -5,7 +5,7 @@
   "main": "dist/index.js",
   "scripts": {
     "start": "tsc && electron .",
-    "build": "tsc && electron-builder build",
+    "build": "tsc && electron-builder build --universal",
     "tsc": "tsc",
     "lint": "eslint --ext .ts ."
   },
@@ -16,7 +16,7 @@
   },
   "license": "CAL-1.0",
   "build": {
-    "productName": "ElectronHolochainTemplate",
+    "productName": "Doom",
     "afterSign": "./afterSignHook.js",
     "appId": "com.some-domain-name.app-name",
     "copyright": "© 2022 So And So Ltd. ",

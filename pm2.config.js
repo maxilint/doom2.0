@@ -14,6 +14,8 @@ module.exports = {
       watch: ['electron/dist'],
       env: {
         NODE_ENV: 'development',
+        RUST_LOG: 'info',
+        WASM_LOG: 'info',
       },
     },
     // {
@@ -25,4 +27,4 @@ module.exports = {
     //   },
     // },
   ],
-}
+};
