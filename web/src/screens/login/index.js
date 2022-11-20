@@ -15,13 +15,16 @@ export default function Login() {
   const [holochain, setHolochain] = useState(false)
 
   async function getHolochainClient() {
+    console.log('got here-------')
     const { client, cellId, unsubscribe } = await getClient({
       callback: () => {},
     })
+    console.log('got client')
     setHolochain({ client, cellId, unsubscribe })
   }
 
   const getProfile = async () => {
+    console.log('in get profile')
     const result = await holochain.client.callZome(
       holochain.cellId,
       'profiles',
@@ -40,6 +43,7 @@ export default function Login() {
   }, [user])
 
   const onLogin = async ({ username, email }) => {
+    console.log('in on login')
     setLoading(true)
     const result = await holochain.client.callZome(
       holochain.cellId,

@@ -3,7 +3,10 @@ const ReactRefreshTypeScript = require('react-refresh-typescript')
 const fs = require('fs')
 const path = require('path')
 const webpack = require('webpack')
-const mainAppId = fs.readFileSync(path.join(__dirname, '../config-main-app-id'), 'utf-8')
+const mainAppId = fs.readFileSync(
+  path.join(__dirname, '../config-main-app-id'),
+  'utf-8'
+)
 
 // const isDevelopment = true
 module.exports = {
@@ -35,7 +38,7 @@ module.exports = {
     host: 'localhost',
     disableHostCheck: true,
     contentBase: './dist',
-    hot: true // hot module reloading
+    hot: true, // hot module reloading
   },
   module: {
     rules: [
@@ -52,6 +55,24 @@ module.exports = {
             ],
           },
         },
+      },
+      // This node_module rules is because there are problems with the @holochain/client
+      {
+        test: /\.js$/,
+        include: /node_modules/,
+        use: [
+          {
+            loader: require.resolve('ts-loader'),
+            options: {
+              getCustomTransformers: () => ({
+                before: [ReactRefreshTypeScript()],
+              }),
+              // `ts-loader` does not work with HMR unless `transpileOnly` is used.
+              // If you need type checking, `ForkTsCheckerWebpackPlugin` is an alternative.
+              transpileOnly: true,
+            },
+          },
+        ],
       },
       {
         test: /\.(ts|tsx)$/,

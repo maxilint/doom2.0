@@ -50,9 +50,9 @@ export default function Home() {
   }
 
   useEffect(() => {
-    if(activeTab === 'Join') setRoom('')
+    if (activeTab === 'Join') setRoom('')
     else setRoom(makeId(10))
-  },[activeTab])
+  }, [activeTab])
 
   useEffect(() => {
     if (!user.profile.nickname) history.goBack()
@@ -63,8 +63,8 @@ export default function Home() {
   }, [])
 
   const onJoinRoom = async ({ id = room }) => {
-    if(!holochain) return
-    if(!id) return setError('Room id is required')
+    if (!holochain) return
+    if (!id) return setError('Room id is required')
     const result = await holochain.client.callZome(
       holochain.cellId,
       'peers',
@@ -84,8 +84,8 @@ export default function Home() {
   }
 
   const onCreateRoom = async () => {
-    if(!holochain) return
-    if(!room) return setError('Room id is required')
+    if (!holochain) return
+    if (!room) return setError('Room id is required')
     setLoading(true)
     const result = await holochain.client.callZome(
       holochain.cellId,

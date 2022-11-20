@@ -4,7 +4,13 @@ import { APP_PORT, MAIN_APP_ID } from '../holochainConfig'
 
 export async function getClient({ callback }) {
   const client = await setupClient()
+
+  const appInfo = await client.appWebsocket.appInfo({
+    installed_app_id: MAIN_APP_ID,
+  })
+  client.appInfo = appInfo
   const { unsubscribe } = client.addSignalHandler(callback)
+
   const cellId = client.appInfo.cell_data[0].cell_id
   return { client, cellId, unsubscribe }
 }
