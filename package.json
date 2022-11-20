@@ -16,7 +16,7 @@
     "web-install": "cd web && npm install",
     "web": "cd web && ADMIN_WS_PORT=1234 APP_WS_PORT=8888 npx serve -p 8080 dist",
     "web2": "cd web && ADMIN_WS_PORT=1236 APP_WS_PORT=8899 npx serve -p 8081 dist",
-    "web-build": "echo \"add a build step for web here\"",
+    "web-build": "cd web && npx webpack --config webpack.prod.js",
     "electron-install": "cd electron && npm install",
     "electron": "cd electron && npm run start",
     "electron2": "cd electron && EH_TEST_USER_2=1 npm run start",
