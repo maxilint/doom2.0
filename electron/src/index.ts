@@ -1,7 +1,10 @@
 import { app, BrowserWindow, shell } from 'electron'
 import * as path from 'path'
 // import log from 'electron-log'
-import initAgent, { StateSignal, STATUS_EVENT } from '@lightningrodlabs/electron-holochain'
+import initAgent, {
+  StateSignal,
+  STATUS_EVENT,
+} from '@lightningrodlabs/electron-holochain'
 
 import {
   devOptions,
@@ -53,6 +56,8 @@ const createMainWindow = (): BrowserWindow => {
   //   options.icon = LINUX_ICON_FILE
   // }
   const mainWindow = new BrowserWindow(options)
+
+  mainWindow.webContents.openDevTools()
   // and load the index.html of the app.
   if (app.isPackaged) {
     mainWindow.loadFile(MAIN_FILE_PATH)

@@ -47,6 +47,12 @@ module.exports = {
           },
         },
       },
+      // This node_module rules is because there are problems with the @holochain/client
+      {
+        test: /\.js$/,
+        include: /node_modules/,
+        use: 'ts-loader',
+      },
       {
         test: /\.(ts|tsx)$/,
         exclude: /node_modules/,
