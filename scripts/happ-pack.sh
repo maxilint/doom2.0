@@ -2,7 +2,8 @@
 # Compile Rust to WASM
 # add any additional zomes here, in the same way
 cargo build --release --target wasm32-unknown-unknown --manifest-path happ/zomes/peers/Cargo.toml
-cargo build --release --target wasm32-unknown-unknown --manifest-path happ/zomes/profiles/Cargo.toml
+cargo build --release --target wasm32-unknown-unknown --manifest-path happ/zomes/coordinator/profiles/Cargo.toml
+cargo build --release --target wasm32-unknown-unknown --manifest-path happ/zomes/integrity/profiles/Cargo.toml
 
 # Pack DNAs
 # add any additional dnas here, in the same way

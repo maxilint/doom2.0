@@ -1,7 +1,8 @@
 [workspace]
 members = [
   "happ/zomes/peers",
-  "happ/zomes/profiles",
+  "happ/zomes/integrity/profiles",
+  "happ/zomes/coordinator/profiles",
 ]
 
 [profile.dev]
