@@ -16,7 +16,7 @@ coordinator:
     #   bundled: ../../target/wasm32-unknown-unknown/release/coordinator.wasm
     #   dependencies:
     #     - name: integrity
-    - name: profiles
+    - name: profiles_coordinator
       bundled: ../../target/wasm32-unknown-unknown/release/profiles_coordinator.wasm
       dependencies:
         - name: profiles_integrity

@@ -43,6 +43,7 @@ export default function Home() {
   const [tabs, setTabs] = useState(['Create', 'Join'])
 
   async function getHolochainClient() {
+    console.log('home index')
     const { client, cellId, unsubscribe } = await getClient({
       callback: () => {},
     })

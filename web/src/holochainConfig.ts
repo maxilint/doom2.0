@@ -1,6 +1,6 @@
 // this corresponds with the zome name used in
 // `dna/workdir/dna/profiles/dna.yaml`
-export const PROFILES_ZOME = 'profiles'
+export const PROFILES_ZOME = 'profiles_coordinator'
 export const PEERS_ZOME = 'peers'
 
 // this corresponds with the app id used to install the app
