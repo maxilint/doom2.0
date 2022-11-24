@@ -5,10 +5,11 @@ import UserContext from '../../context/user'
 import { getClient } from '../../zomes'
 import Container from '../../components/Container'
 import Loader from '../../components/Loader'
+import { EntryRecord } from '@holochain-open-dev/utils'
 
 export default function Login() {
   const history = useHistory()
-  const { user, setUser } = useContext(UserContext)
+  const { userProfile, setUserProfile } = useContext(UserContext)
 
   const [loading, setLoading] = useState(true)
   const [error, setError] = useState(false)
@@ -24,32 +25,30 @@ export default function Login() {
   }
 
   const getProfile = async () => {
-    console.log('in get profile')
-    console.log(holochain)
-    debugger
     const result = await holochain.client.callZome(
       holochain.cellId,
       'profiles_coordinator',
       'get_my_profile',
-      null,
-      50000
+      null
     )
-
-    console.log('after response from holochain')
-    if (result) {
-      setUser(result)
+    // get_my_profile returns a record, which requires the EntryRecord to be parsed.
+    const profileRecord = new EntryRecord(result)
+    const profile = profileRecord.entry
+    console.log(profile)
+    if (profile) {
+      setUserProfile(profile)
     } else {
       setLoading(false)
     }
   }
 
   useEffect(() => {
-    if (user.profile.nickname) history.push('/home')
-  }, [user])
+    if (userProfile.nickname) history.push('/home')
+  }, [userProfile])
 
   const onLogin = async ({ username, email }) => {
-    console.log('in on login')
     setLoading(true)
+
     const result = await holochain.client.callZome(
       holochain.cellId,
       'profiles_coordinator',
@@ -59,9 +58,12 @@ export default function Login() {
         fields: { email: email },
       }
     )
-    console.log('PROFILE CREATED')
-    if (result) {
-      setUser(result)
+
+    const profileRecord = new EntryRecord(result)
+    const profile = profileRecord.entry
+
+    if (profile) {
+      setUserProfile(profile)
       setError(false)
       history.push('/home')
     } else {

@@ -11,17 +11,14 @@ import User from './context/user'
 import './styles.css'
 
 const App = () => {
-  const [user, setUser] = useState({
-    agentPubKey: '',
-    profile: {
-      nickname: '',
-      fields: {},
-    },
+  const [userProfile, setUserProfile] = useState({
+    nickname: '',
+    fields: {},
   })
 
   return (
     <Router>
-      <User.Provider value={{ user, setUser }}>
+      <User.Provider value={{ userProfile, setUserProfile }}>
         <Switch>
           <Route exact path="/">
             <Login />
